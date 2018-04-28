@@ -4,7 +4,6 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import uk.co.codemanship.principles.QuickSort;
 
 import java.util.Arrays;
 
@@ -31,14 +30,14 @@ public class QuickSortTests {
     @Test
     @Parameters(method="data")
     public void arrayIsSortedInAscendingOrder(int[] input) {
-        int[] output = createSort().sortAsc(input);
+        int[] output = (int[]) createSort().go(input);
         assertThat(Arrays.asList(output), containsInAnyOrder(input));
         for (int i = 0; i < output.length - 1; i++) {
             assertThat(output[i], is(lessThanOrEqualTo(output[i + 1])));
         }
     }
 
-    private QuickSort createSort() {
-        return new QuickSort();
+    private Utils createSort() {
+        return new Utils();
     };
 }
